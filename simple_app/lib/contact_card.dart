@@ -6,12 +6,13 @@ class ContactCard extends StatefulWidget {
   final Gender gender;
   final String? name;
   final String phoneNumber;
-
+  final Function delete;
   const ContactCard({
     Key? key,
     this.gender = Gender.male,
     required this.phoneNumber,
     this.name,
+    required this.delete,
   }) : super(key: key);
 
   @override
@@ -69,7 +70,9 @@ class _ContactCardState extends State<ContactCard> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                widget.delete(widget.phoneNumber);
+              },
               icon: Icon(
                 Icons.delete,
                 color: grey2,

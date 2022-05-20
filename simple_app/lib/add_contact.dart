@@ -5,7 +5,9 @@ import 'package:simple_app/gender.dart';
 
 class AddContact extends StatefulWidget {
   final Function add;
-  const AddContact({Key? key, required this.add}) : super(key: key);
+  final Function delete;
+  const AddContact({Key? key, required this.add, required this.delete})
+      : super(key: key);
 
   @override
   State<AddContact> createState() => _AddContactState();
@@ -115,15 +117,18 @@ class _AddContactState extends State<AddContact> {
               ),
               TextButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    widget.add(
-                      ContactCard(
-                        phoneNumber: _phoneNumber,
-                        gender: _gender!,
-                        name: _name,
-                      ),
-                    );
+                  if (_formKey.currentState!.validate() &&
+                      widget.add(
+                        ContactCard(
+                          phoneNumber: _phoneNumber,
+                          gender: _gender!,
+                          name: _name,
+                          delete: widget.delete,
+                        ),
+                      )) {
                     Navigator.pop(context);
+                  } else {
+                    _formKey.currentState!.reset();
                   }
                 },
                 child: const Text(

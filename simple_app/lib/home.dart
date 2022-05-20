@@ -11,20 +11,52 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<ContactCard> contacts = [
-    const ContactCard(
-      name: "Yacine",
-      phoneNumber: "0557042274",
-    ),
-    const ContactCard(
-      name: "Yacine",
-      phoneNumber: "0557042274",
-    ),
-  ];
-  void add(ContactCard e) {
+  List<ContactCard> contacts = [];
+
+  bool add(ContactCard e) {
+    if (contacts
+            .indexWhere((element) => element.phoneNumber == e.phoneNumber) ==
+        -1) {
+      setState(() {
+        contacts.add(e);
+      });
+      return true;
+    } else
+      return false;
+  }
+
+  void delete(String number) {
     setState(() {
-      contacts.add(e);
+      contacts.removeWhere((element) => element.phoneNumber == number);
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    contacts = [
+      ContactCard(
+        name: "Yacine",
+        phoneNumber: "0557042274",
+        delete: delete,
+      ),
+      ContactCard(
+        name: "Amir",
+        phoneNumber: "0557042275",
+        delete: delete,
+      ),
+      ContactCard(
+        name: "Mazen",
+        phoneNumber: "0557042276",
+        delete: delete,
+      ),
+      ContactCard(
+        name: "Djawad",
+        phoneNumber: "0557042277",
+        delete: delete,
+      ),
+    ];
   }
 
   @override
@@ -47,7 +79,10 @@ class _HomeState extends State<Home> {
           showDialog(
               context: context,
               builder: (context) => Dialog(
-                    child: AddContact(add: add),
+                    child: AddContact(
+                      add: add,
+                      delete: delete,
+                    ),
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                     insetPadding: const EdgeInsets.symmetric(
