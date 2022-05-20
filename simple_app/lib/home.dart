@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_app/add_contact.dart';
+import 'package:simple_app/constants.dart';
 import 'package:simple_app/contact_card.dart';
 
 class Home extends StatefulWidget {
@@ -9,12 +11,60 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<ContactCard> contacts = [
+    const ContactCard(
+      name: "Yacine",
+      phoneNumber: "0557042274",
+    ),
+    const ContactCard(
+      name: "Yacine",
+      phoneNumber: "0557042274",
+    ),
+  ];
+  void add(ContactCard e) {
+    setState(() {
+      contacts.add(e);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: ContactCard(
-        name: "Yacine",
-        phoneNumber: "0557042274",
+    return Scaffold(
+      backgroundColor: grey2,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: grey1,
+        title: const Text(
+          "Contacts",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) => Dialog(
+                    child: AddContact(add: add),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    insetPadding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 20),
+                  ));
+        },
+        backgroundColor: Colors.amber,
+        child: const Icon(Icons.add),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: contacts,
+          ),
+        ),
       ),
     );
   }

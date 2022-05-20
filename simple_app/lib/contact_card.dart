@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_app/constants.dart';
+import 'package:simple_app/gender.dart';
 
 class ContactCard extends StatefulWidget {
   final Gender gender;
@@ -18,28 +19,17 @@ class ContactCard extends StatefulWidget {
 }
 
 class _ContactCardState extends State<ContactCard> {
-  late int colorDegre;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    colorDegre = 0;
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        colorDegre += 100;
-        colorDegre %= 900;
-        setState(() {});
-      },
+      onTap: () {},
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          color: Colors.brown[colorDegre + 100],
+          color: grey1,
         ),
         padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
             Expanded(
@@ -78,11 +68,16 @@ class _ContactCardState extends State<ContactCard> {
                 ],
               ),
             ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.delete,
+                color: grey2,
+              ),
+            )
           ],
         ),
       ),
     );
   }
 }
-
-enum Gender { male, female }
