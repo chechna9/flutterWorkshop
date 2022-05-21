@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_app/contact_detaille.dart';
 import 'package:simple_app/home.dart';
 
 void main() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_app/constants.dart';
+import 'package:simple_app/contact_detaille.dart';
 import 'package:simple_app/gender.dart';
 
 class ContactCard extends StatefulWidget {
@@ -23,7 +24,13 @@ class _ContactCardState extends State<ContactCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => ContactDetaille(
+                    name: widget.name, phoneNumber: widget.phoneNumber))));
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
