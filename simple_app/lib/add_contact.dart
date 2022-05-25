@@ -117,18 +117,19 @@ class _AddContactState extends State<AddContact> {
               ),
               TextButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate() &&
-                      widget.add(
-                        ContactCard(
-                          phoneNumber: _phoneNumber,
-                          gender: _gender!,
-                          name: _name,
-                          delete: widget.delete,
-                        ),
-                      )) {
-                    Navigator.pop(context);
-                  } else {
-                    _formKey.currentState!.reset();
+                  if (_formKey.currentState!.validate()) {
+                    if (widget.add(
+                      ContactCard(
+                        phoneNumber: _phoneNumber,
+                        gender: _gender!,
+                        name: _name,
+                        delete: widget.delete,
+                      ),
+                    )) {
+                      Navigator.pop(context);
+                    } else {
+                      _formKey.currentState!.reset();
+                    }
                   }
                 },
                 child: const Text(

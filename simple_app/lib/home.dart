@@ -21,13 +21,14 @@ class _HomeState extends State<Home> {
         contacts.add(e);
       });
       return true;
-    } else
+    } else {
       return false;
+    }
   }
 
   void delete(String number) {
     setState(() {
-      contacts.removeWhere((element) => element.phoneNumber == number);
+      contacts.remove((element) => element.phoneNumber == number);
     });
   }
 
@@ -54,6 +55,16 @@ class _HomeState extends State<Home> {
       ContactCard(
         name: "Djawad",
         phoneNumber: "0557042277",
+        delete: delete,
+      ),
+      ContactCard(
+        name: "Yazid",
+        phoneNumber: "0557042278",
+        delete: delete,
+      ),
+      ContactCard(
+        name: "Cristiano",
+        phoneNumber: "0557042279",
         delete: delete,
       ),
     ];
