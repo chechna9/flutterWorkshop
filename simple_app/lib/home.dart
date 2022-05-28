@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
 
   void delete(String number) {
     setState(() {
-      contacts.remove((element) => element.phoneNumber == number);
+      contacts.removeWhere((element) => element.phoneNumber == number);
     });
   }
 
